@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="UI_JDBC">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Учеба/5 семестр/Java/2/UI_JDBC/dist/UI_JDBC.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
