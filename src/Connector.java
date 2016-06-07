@@ -1,8 +1,18 @@
+import mypackage.Seria;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class Connector {
-    public Connector(){
+class Connector {
+
+    private final String DB_URL = "jdbc:mysql://localhost:3306/paperoll";
+    private final String DB_USER = "root";
+    private final String DB_PASS = "";
+    private boolean res;
+
+    Connector(){
         res = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -25,8 +35,8 @@ public class Connector {
             }
         }
     }
-    public LinkedList<String> getSeriesPhotos(){
-        LinkedList<String> result = null;
+    LinkedList<Seria> getData(){
+        LinkedList result = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {}
@@ -34,11 +44,22 @@ public class Connector {
         try {
             cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
             Statement statement = cn.createStatement();
-            String SQLRequest = "Select photo FROM series";
+            String SQLRequest = "Select * FROM series";
             ResultSet rs = statement.executeQuery(SQLRequest);
-            result = new LinkedList<String>();
+            result = new LinkedList<Seria>();
             while(rs.next()){
-                result.add(rs.getString(1));
+                Seria seria=new Seria();
+                seria.setId(rs.getInt(1));
+                seria.setName(rs.getString(2));
+                seria.setPhoto(rs.getString(3));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(rs.getAsciiStream(4)));
+                String input;
+                LinkedList text = new LinkedList();
+                while ((input = reader.readLine()) != null) {
+                    text.add(input);
+                }
+                seria.setDescription(text);
+                result.add(seria);
             }
         } catch (Exception ex) {} finally {
             try {
@@ -53,8 +74,4 @@ public class Connector {
     public boolean Done() {
         return res;
     }
-    private final String DB_URL = "jdbc:mysql://127.0.0.1:3306/paperoll";
-    private final String DB_USER = "root";
-    private final String DB_PASS = "";
-    private boolean res;
 }

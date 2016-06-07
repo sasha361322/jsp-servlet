@@ -15,28 +15,18 @@
       <title>Главная</title>
   </head>
   <body>
-  <table border=1
+  <table border=0
          cellpadding=0
          cellspacing=0
          width="90%"
          align="center"
   >
       <tr>
-          <th><p>Главная</p></th>
-          <th>О нас</th>
-          <th>Ассортимент</th>
-          <th>Контактные данные</th>
+          <th>Главная</th>
+          <th><a href="about.jsp">О нас</a></th>
+          <th><a href="assortment.jsp">Ассортимент</a></th>
+          <th><a href="contacts.jsp">Контактные данные</a></th>
       </tr>
-        <%Iterator itr;%>
-        <% List data= (List)request.getAttribute("seriesPhotos");
-            for (itr=data.iterator(); itr.hasNext(); ) {
-        %>
-        <tr>
-            <td colspan="4">
-                <img src="/img/<%=itr.next()%>" width="33%" alt="cars">
-            </td>
-        </tr>
-        <%}%>
   </table>
   </body>
 </html>
