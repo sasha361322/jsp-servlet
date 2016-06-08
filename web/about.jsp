@@ -9,6 +9,9 @@
 <html>
 <head>
     <title>О нас</title>
+    <style>
+        <%@include file='css/style.css' %>
+    </style>
 </head>
 <body>
 <table border=0
@@ -18,10 +21,26 @@
        align="center"
 >
     <tr>
-        <th><a href="main.jsp">Главная</a></th>
-        <th>О нас</th>
-        <th><a href="assortment.jsp">Ассортимент</a></th>
-        <th><a href="contacts.jsp">Контактные данные</a></th>
+        <th>
+            <form action="main.jsp" method="post">
+                <input class = "button head_button" type="submit" value="Главная"/>
+            </form>
+        </th>
+        <th>
+            <form action="" method="post">
+                <input class = "button head_button" type="submit" value="О нас"/>
+            </form>
+        </th>
+        <th>
+            <form action="assortment" method="post">
+                <input class = "button head_button" type="submit" value="Ассортимент"/>
+            </form>
+        </th>
+        <th>
+            <form action="contacts.jsp" method="post">
+                <input class = "button head_button" type="submit" value="Контактные данные"/>
+            </form>
+        </th>
     </tr>
 </table>
 </body>

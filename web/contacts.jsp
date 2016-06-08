@@ -9,6 +9,9 @@
 <html>
 <head>
     <title>Контактные данные</title>
+    <style>
+        <%@include file='css/style.css' %>
+    </style>
 </head>
 <body>
 
@@ -19,10 +22,26 @@
        align="center"
 >
     <tr>
-        <th><a href="main.jsp">Главная</a></th>
-        <th><a href="about.jsp">О нас</a></th>
-        <th><a href="assortment.jsp">Ассортимент</a></th>
-        <th>Контактные данные</th>
+        <th>
+            <form action="main.jsp" method="post">
+                <input class = "button head_button" type="submit" value="Главная"/>
+            </form>
+        </th>
+        <th>
+            <form action="about.jsp" method="post">
+                <input class = "button head_button" type="submit" value="О нас"/>
+            </form>
+        </th>
+        <th>
+            <form action="assortment" method="post">
+                <input class = "button head_button" type="submit" value="Ассортимент"/>
+            </form>
+        </th>
+        <th>
+            <form action="" method="post">
+                <input class = "button head_button" type="submit" value="Контактные данные"/>
+            </form>
+        </th>
     </tr>
 </table>
 </body>

@@ -1,8 +1,7 @@
 package mypackage;
 
-import java.util.LinkedList;
 public class Seria {
-    public Seria(int id, String name, String photo, LinkedList description){
+    public Seria(int id, String name, String photo, String description){
         this.id = id;
         this.name = name;
         this.photo = photo;
@@ -12,7 +11,7 @@ public class Seria {
         id=0;
         name="";
         photo="";
-        description = new LinkedList<>();
+        description = "";
     }
     public int getId(){
         return id;
@@ -23,7 +22,7 @@ public class Seria {
     public String getPhoto(){
         return photo;
     }
-    public LinkedList getDescription(){
+    public String getDescription(){
         return description;
     }
     public void setId(int id) {
@@ -35,11 +34,11 @@ public class Seria {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-    public void setDescription(LinkedList<String> description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     private int id;
     private String name;
     private String photo;
-    private LinkedList<String> description;
+    private String description;
 }

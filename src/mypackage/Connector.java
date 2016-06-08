@@ -1,7 +1,5 @@
-import mypackage.Seria;
+package mypackage;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.LinkedList;
 
@@ -52,13 +50,7 @@ class Connector {
                 seria.setId(rs.getInt(1));
                 seria.setName(rs.getString(2));
                 seria.setPhoto(rs.getString(3));
-                BufferedReader reader = new BufferedReader(new InputStreamReader(rs.getAsciiStream(4)));
-                String input;
-                LinkedList text = new LinkedList();
-                while ((input = reader.readLine()) != null) {
-                    text.add(input);
-                }
-                seria.setDescription(text);
+                seria.setDescription(rs.getString(4));
                 result.add(seria);
             }
         } catch (Exception ex) {} finally {
