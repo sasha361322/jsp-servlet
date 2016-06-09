@@ -148,6 +148,10 @@
                                         </td>
                                         <td>
                                             <%=seria.getDescription()%>
+                                            <form>
+                                                <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
+
+                                            </form>
                                         </td>
                                     </tr>
                                 </table>
