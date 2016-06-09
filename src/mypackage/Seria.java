@@ -1,15 +1,10 @@
 package mypackage;
 
 public class Seria {
-    public Seria(int id, String name, String photo, String description){
-        this.id = id;
-        this.name = name;
-        this.photo = photo;
-        this.description = description;
-    }
     public Seria(){
         id=0;
         name="";
+        name_ru="";
         photo="";
         description = "";
     }
@@ -37,8 +32,15 @@ public class Seria {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String getName_ru() {
+        return name_ru;
+    }
+    public void setName_ru(String name_ru) {
+        this.name_ru = name_ru;
+    }
     private int id;
     private String name;
+    private String name_ru;
     private String photo;
     private String description;
 }

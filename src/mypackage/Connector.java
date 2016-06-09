@@ -46,8 +46,9 @@ class Connector {
                 Seria seria=new Seria();
                 seria.setId(rs.getInt(1));
                 seria.setName(rs.getString(2));
-                seria.setPhoto(rs.getString(3));
-                seria.setDescription(rs.getString(4));
+                seria.setName_ru(rs.getString(3));
+                seria.setPhoto(rs.getString(4));
+                seria.setDescription(rs.getString(5));
                 result.add(seria);
             }
         } catch (Exception ex) {} finally {

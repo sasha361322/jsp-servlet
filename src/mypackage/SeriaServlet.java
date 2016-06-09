@@ -14,13 +14,16 @@ public class SeriaServlet extends HttpServlet {
     String page = "seria.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int seria_id = Integer.parseInt(request.getParameter("seria_id"));
+        String name = request.getParameter("name");
+        System.out.println(seria_id);
+        System.out.println(name);
         Connector cn = new Connector();
         LinkedList<Type_work> type_works = new LinkedList<Type_work>();
         if(cn.Done()){
             type_works = cn.getTypesOfWork(seria_id);
         }
         request.setAttribute("type_works", type_works);
-        request.setAttribute("seria_name", type_works);
+        request.setAttribute("seria_name", name);
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         if (dispatcher != null) {
             dispatcher.forward(request, response);

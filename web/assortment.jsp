@@ -138,10 +138,11 @@
                                 %>
                                 <form id="<%=seria.getId()%>" action="/seria" method="post">
                                     <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
+                                    <input type="hidden" name="name" value=<%=seria.getName()%>>
                                     <table onclick="document.getElementById('<%=seria.getId()%>').submit();">
                                         <tr>
                                             <td colspan="2">
-                                                <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
+                                                <h3 align="center">Серия &laquo;<%=seria.getName_ru()%>&raquo;</h3>
                                             </td>
                                         </tr>
                                         <tr>
