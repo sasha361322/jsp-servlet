@@ -130,13 +130,15 @@
                     <div class="header" id="1-header">Папертольные карты</div>
                     <div class="content" id="1-content">
                         <div class="text">
+                            <form id="myform" action="/seria" method="post">
                                 <%Iterator itr;%>
                                 <% LinkedList<Seria> data = (LinkedList<Seria>) request.getAttribute("data");
                                 Seria seria;
                                 for (itr=data.iterator(); itr.hasNext(); ) {
                                     seria = (Seria) itr.next();
                                 %>
-                                <table>
+                                <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
+                                <table onclick="document.getElementById('myform').submit();">
                                     <tr>
                                         <td colspan="2">
                                             <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
@@ -148,15 +150,12 @@
                                         </td>
                                         <td>
                                             <%=seria.getDescription()%>
-                                            <form>
-                                                <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
-
-                                            </form>
                                         </td>
                                     </tr>
                                 </table>
                                 <hr>
                                 <%}%>
+                            </form>
                         </div>
                     </div>
                     <div class="header" id="2-header">Готовые папертоли</div>
