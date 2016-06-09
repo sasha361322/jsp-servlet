@@ -1,24 +1,29 @@
 package mypackage;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.LinkedList;
 
 @WebServlet(name = "SeriaServlet")
 public class SeriaServlet extends HttpServlet {
+    String page = "seria.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Enumeration en=request.getParameterNames();
-
-        while(en.hasMoreElements())
-        {
-            Object objOri=en.nextElement();
-            String param=(String)objOri;
-            String value=request.getParameter(param);
-            System.out.println("Parameter Name is '"+param+"' and Parameter Value is '"+value+"'");
+        int seria_id = Integer.parseInt(request.getParameter("seria_id"));
+        Connector cn = new Connector();
+        LinkedList<Type_work> type_works = new LinkedList<Type_work>();
+        if(cn.Done()){
+            type_works = cn.getTypesOfWork(seria_id);
+        }
+        request.setAttribute("type_works", type_works);
+        request.setAttribute("seria_name", type_works);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+        if (dispatcher != null) {
+            dispatcher.forward(request, response);
         }
     }
 

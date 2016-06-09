@@ -127,61 +127,35 @@
             <div id="intro">
                 <p>
                 <div id="slider">
-                    <div class="header" id="1-header">Папертольные карты</div>
+                    <div class="header" id="1-header">Папертоли</div>
                     <div class="content" id="1-content">
                         <div class="text">
-                            <form id="myform" action="/seria" method="post">
                                 <%Iterator itr;%>
                                 <% LinkedList<Seria> data = (LinkedList<Seria>) request.getAttribute("data");
                                 Seria seria;
                                 for (itr=data.iterator(); itr.hasNext(); ) {
                                     seria = (Seria) itr.next();
                                 %>
-                                <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
-                                <table onclick="document.getElementById('myform').submit();">
-                                    <tr>
-                                        <td colspan="2">
-                                            <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="50%">
-                                                <img src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
-                                        </td>
-                                        <td>
-                                            <%=seria.getDescription()%>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <form id="<%=seria.getId()%>" action="/seria" method="post">
+                                    <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
+                                    <table onclick="document.getElementById('<%=seria.getId()%>').submit();">
+                                        <tr>
+                                            <td colspan="2">
+                                                <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="50%">
+                                                    <img src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
+                                            </td>
+                                            <td>
+                                                <%=seria.getDescription()%>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
                                 <hr>
                                 <%}%>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="header" id="2-header">Готовые папертоли</div>
-                    <div class="content" id="2-content">
-                        <div class="text">
-                            <% data = (LinkedList<Seria>) request.getAttribute("data");
-                                for (itr=data.iterator(); itr.hasNext(); ) {
-                                    seria = (Seria) itr.next();
-                            %>
-                            <table>
-                                <tr>
-                                    <td colspan="2">
-                                        <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="50%">
-                                        <img src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
-                                    </td>
-                                    <td>
-                                        <%=seria.getDescription()%>
-                                    </td>
-                                </tr>
-                            </table>
-                            <hr>
-                            <%}%>
                         </div>
                     </div>
                     <div class="header" id="3-header">Комплектующие</div>
