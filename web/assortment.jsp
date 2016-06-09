@@ -136,11 +136,21 @@
                                 for (itr=data.iterator(); itr.hasNext(); ) {
                                     seria = (Seria) itr.next();
                                 %>
-                                <b><%=seria.getName()%></b>
-                                <p style="text-align: center">
-                                    <img src="/img/<%=seria.getPhoto()%>" width="33%" alt="cars">
-                                    <%=seria.getDescription()%>
-                                </p>
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                                <img src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
+                                        </td>
+                                        <td>
+                                            <%=seria.getDescription()%>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <hr>
                                 <%}%>
                         </div>
@@ -148,7 +158,27 @@
                     <div class="header" id="2-header">Готовые папертоли</div>
                     <div class="content" id="2-content">
                         <div class="text">
-                            Содержимое блока.
+                            <% data = (LinkedList<Seria>) request.getAttribute("data");
+                                for (itr=data.iterator(); itr.hasNext(); ) {
+                                    seria = (Seria) itr.next();
+                            %>
+                            <table>
+                                <tr>
+                                    <td colspan="2">
+                                        <h3 align="center">Серия &laquo;<%=seria.getName()%>&raquo;</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%">
+                                        <img src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
+                                    </td>
+                                    <td>
+                                        <%=seria.getDescription()%>
+                                    </td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <%}%>
                         </div>
                     </div>
                     <div class="header" id="3-header">Комплектующие</div>
