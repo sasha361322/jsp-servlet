@@ -6,6 +6,14 @@
     font-size: 16px;"
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.mylink:hover {
+    background-color: crimson;
+    text-transform: uppercase;
+}
 #slider {
     width: 100%;
     color: #666666;

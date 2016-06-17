@@ -90,6 +90,42 @@ class Connector {
         }
         return result;
     }
+    LinkedList<Work> getWorks(int id, boolean is_finished){
+        LinkedList<Work> result = null;
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            String SQLRequest = "Select * FROM work WHERE type_work_id=? AND count_lists is ";
+            if (!is_finished)
+                SQLRequest += "NOT ";
+            SQLRequest += "NULL ";
+            PreparedStatement pst = cn.prepareStatement(SQLRequest);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            result = new LinkedList<Work>();
+            while(rs.next()){
+                Work work =new Work();
+                work.setId(rs.getInt(1));
+                work.setArticle(rs.getString(2));
+                work.setDescription(rs.getString(3));
+                work.setType_work_id(rs.getInt(4));
+                work.setPrice(rs.getInt(5));
+                work.setSize_x(rs.getInt(6));
+                work.setSize_y(rs.getInt(7));
+                work.setOwn_photo(rs.getString(8));
+                work.setCount_lists(rs.getString(9));
+                result.add(work);
+            }
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return result;
+                }
+            } catch (SQLException ex) {}
+        }
+        return result;
+    }
 
     private final String DB_URL = "jdbc:mysql://localhost:3306/paperoll";
     private final String DB_USER = "root";

@@ -55,15 +55,33 @@
             %>
                 <table>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <h3 align="center">Серия &laquo;<%=type_works.getName()%>&raquo;</h3>
                         </td>
                     </tr>
                     <tr>
-                        <td width="50%">
+                        <td width="50%" rowspan="2">
                             <img src="/img/<%=seria_name%>/<%=type_works.getPhoto()%>" width="60%" alt="cars" hspace="20%">
                         </td>
-                        <td>
+                        <td width="25%">
+                            <form action="/works" method="post">
+                                <input type="submit" class="button head_button" value="Готовые папертоли">
+                                <input type="hidden" name="is_finished" value="true">
+                                <input type="hidden" name="name" value="<%=type_works.getName()%>">
+                                <input type="hidden" name="type_work_id" value=<%=type_works.getId()%>>
+                            </form>
+                        </td>
+                        <td width="25%">
+                            <form action="/works" method="post">
+                                <input type="submit" class="button head_button" value="Папертольные карты">
+                                <input type="hidden" name="is_finished" value="false">
+                                <input type="hidden" name="name" value="<%=type_works.getName()%>">
+                                <input type="hidden" name="type_work_id" value=<%=type_works.getId()%>>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <%=type_works.getDescription()%>
                         </td>
                     </tr>

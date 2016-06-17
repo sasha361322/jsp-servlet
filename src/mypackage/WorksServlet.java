@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.LinkedList;
 
-@WebServlet(name = "SeriaServlet")
-public class SeriaServlet extends HttpServlet {
-    String page = "seria.jsp";
+@WebServlet(name = "WorksServlet")
+public class WorksServlet extends HttpServlet {
+    String page = "works.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int seria_id = Integer.parseInt(request.getParameter("seria_id"));
-        String name = request.getParameter("name");
         Connector cn = new Connector();
-        LinkedList<Type_work> type_works = new LinkedList<Type_work>();
-        if(cn.Done()){
-            type_works = cn.getTypesOfWork(seria_id);
+        boolean is_finished = Boolean.parseBoolean(request.getParameter("is_finished"));
+        int type_work_id = Integer.parseInt(request.getParameter("type_work_id"));
+        String name = request.getParameter("name");
+        LinkedList<Work> works = new LinkedList<Work>();
+        if (cn.Done()){
+            works = cn.getWorks(type_work_id, is_finished);
         }
-        request.setAttribute("type_works", type_works);
-        request.setAttribute("seria_name", name);
+        request.setAttribute("works", works);
+        request.setAttribute("name", name);
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         if (dispatcher != null) {
             dispatcher.forward(request, response);

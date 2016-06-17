@@ -139,18 +139,18 @@
                                 <form id="<%=seria.getId()%>" action="/seria" method="post">
                                     <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
                                     <input type="hidden" name="name" value=<%=seria.getName()%>>
-                                    <table onclick="document.getElementById('<%=seria.getId()%>').submit();">
+                                    <table>
                                         <tr>
                                             <td colspan="2">
-                                                <h3 align="center">Серия &laquo;<%=seria.getName_ru()%>&raquo;</h3>
+                                                <h3 onclick="document.getElementById('<%=seria.getId()%>').submit();" class="pointer" align="center">Серия &laquo;<%=seria.getName_ru()%>&raquo;</h3>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td width="50%">
-                                                    <img src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
+                                                    <img onclick="document.getElementById('<%=seria.getId()%>').submit();" class="pointer" src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
                                             </td>
                                             <td>
-                                                <%=seria.getDescription()%>
+                                                <p onclick="document.getElementById('<%=seria.getId()%>').submit();" class="pointer"><%=seria.getDescription()%></p>
                                             </td>
                                         </tr>
                                     </table>

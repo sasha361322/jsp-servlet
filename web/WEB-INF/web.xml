@@ -19,6 +19,14 @@
         <servlet-name>SeriaServlet</servlet-name>
         <url-pattern>/seria</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>WorksServlet</servlet-name>
+        <servlet-class>mypackage.WorksServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WorksServlet</servlet-name>
+        <url-pattern>/works</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.jpg</url-pattern>
