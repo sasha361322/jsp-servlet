@@ -1,4 +1,6 @@
-<%--
+<%@ page import="mypackage.Work" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.LinkedList" %><%--
   Created by IntelliJ IDEA.
   User: sasha
   Date: 17.06.2016
@@ -42,6 +44,45 @@
                 <input class = "button head_button" type="submit" value="Контактные данные"/>
             </form>
         </th>
+    </tr>
+
+    <tr>
+        <td colspan="4">
+            <%Iterator itr;%>
+            <% LinkedList<Work> data = (LinkedList<Work>) request.getAttribute("works");
+                Work work;
+                for (itr=data.iterator(); itr.hasNext(); ) {
+                    work = (Work) itr.next();
+            %>
+            <table>
+                <tr>
+                    <td>
+                        <h3 align="center">Серия &laquo;<%=name%>&raquo;</h3>
+                    </td>
+                    <td>
+                        <h3 align="center">art.<%=work.getArticle()%></h3>
+                    </td>
+                    <td>
+                        <h3 align="center">Цена <%=work.getPrice()%> рублей</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" colspan="2">
+                        <img src="/img/<%=work.getOwn_photo()%>" width="60%" alt="<%=work.getOwn_photo()%>" hspace="20%">
+                    </td>
+
+                    <td>
+                        Размер: <%=work.getSize_x()%>*<%=work.getSize_y()%> см
+                        <hr>
+                        Количество листов <%=work.getCount_lists()%>
+                        <hr>
+                        <%=work.getDescription()%>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <%}%>
+        </td>
     </tr>
 </table>
 </body>

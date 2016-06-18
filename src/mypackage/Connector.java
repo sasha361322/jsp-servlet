@@ -112,7 +112,11 @@ class Connector {
                 work.setPrice(rs.getInt(5));
                 work.setSize_x(rs.getInt(6));
                 work.setSize_y(rs.getInt(7));
-                work.setOwn_photo(rs.getString(8));
+                String photo = rs.getString(8);
+                if (photo!=null)
+                    work.setOwn_photo(photo);
+                else
+                    work.setOwn_photo(getTypePhoto(work.getType_work_id()));
                 work.setCount_lists(rs.getString(9));
                 result.add(work);
             }
@@ -126,7 +130,65 @@ class Connector {
         }
         return result;
     }
-
+    String getTypePhoto(int id){
+        String result = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {}
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            Statement statement = cn.createStatement();
+            String SQLRequest = "Select t.photo, s.name FROM type_work as t left join series as s on t.series_id = s.id WHERE t.id="+id;
+            ResultSet rs = statement.executeQuery(SQLRequest);
+            String photo="", name="";
+            while(rs.next()){
+                photo =rs.getString(1);
+                name =rs.getString(2);
+            }
+            result = name+"/"+photo;
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return result;
+                }
+            } catch (SQLException ex) {}
+        }
+        return result;
+    }
+    LinkedList<Component> getComponents(){
+        LinkedList<Component> result = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {}
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            Statement statement = cn.createStatement();
+            String SQLRequest = "Select * FROM components";
+            ResultSet rs = statement.executeQuery(SQLRequest);
+            result = new LinkedList<Component>();
+            while(rs.next()){
+                Component component=new Component();
+                component.setId(rs.getInt(1));
+                component.setName(rs.getString(2));
+                component.setName_ru(rs.getString(3));
+                component.setPhoto(rs.getString(4));
+                component.setPrice(rs.getInt(5));
+                component.setDescription(rs.getString(6));
+                result.add(component);
+            }
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return result;
+                }
+            } catch (SQLException ex) {}
+        }
+        return result;
+    }
     private final String DB_URL = "jdbc:mysql://localhost:3306/paperoll";
     private final String DB_USER = "root";
     private final String DB_PASS = "";
