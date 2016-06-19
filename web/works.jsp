@@ -79,6 +79,9 @@
                         <%=work.getDescription()%>
                     </td>
                 </tr>
+                <tr>
+
+                </tr>
             </table>
             <hr>
             <%}%>
