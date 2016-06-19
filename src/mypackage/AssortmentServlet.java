@@ -15,10 +15,13 @@ public class AssortmentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connector cn = new Connector();
         LinkedList <Seria>data = new LinkedList<Seria>();
+        LinkedList <Component>components = new LinkedList<Component>();
         if(cn.Done()){
             data = cn.getData();
+            components = cn.getComponents();
         }
         request.setAttribute("data", data);
+        request.setAttribute("components", components);
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         if (dispatcher != null) {
             dispatcher.forward(request, response);

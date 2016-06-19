@@ -22,5 +22,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.0.M4" level="application_server_libraries" />
     <orderEntry type="library" name="mysql-connector-java-5.1.35-bin" level="project" />
     <orderEntry type="library" name="UI_JDBC" level="project" />
+    <orderEntry type="library" name="org.jsoup:jsoup:1.9.2" level="project" />
   </component>
 </module>

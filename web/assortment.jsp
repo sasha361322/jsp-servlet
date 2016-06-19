@@ -1,6 +1,7 @@
 <%@ page import="mypackage.Seria" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.LinkedList" %><%--
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="mypackage.Component" %><%--
   Created by IntelliJ IDEA.
   User: sasha
   Date: 06.06.2016
@@ -149,8 +150,8 @@
                                             <td width="50%">
                                                     <img onclick="document.getElementById('<%=seria.getId()%>').submit();" class="pointer" src="/img/<%=seria.getPhoto()%>" width="60%" alt="cars" hspace="20%">
                                             </td>
-                                            <td>
-                                                <p onclick="document.getElementById('<%=seria.getId()%>').submit();" class="pointer"><%=seria.getDescription()%></p>
+                                            <td
+                                                 onclick="document.getElementById('<%=seria.getId()%>').submit();" class="pointer"><%=seria.getDescription()%>
                                             </td>
                                         </tr>
                                     </table>
@@ -162,7 +163,31 @@
                     <div class="header" id="3-header">Комплектующие</div>
                     <div class="content" id="3-content">
                         <div class="text">
-                            Содержимое блока.
+                            <% LinkedList<Component> components = (LinkedList<Component>) request.getAttribute("components");
+                                Component component;
+                                for (itr=components.iterator(); itr.hasNext(); ) {
+                                    component = (Component) itr.next();
+                            %>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h3><%=component.getName_ru()%></h3>
+                                        </td>
+                                        <td>
+                                            <%=component.getPrice()%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                            <img src="/img/components/<%=component.getPhoto()%>" width="60%" hspace="20%">
+                                        </td>
+                                        <td>
+                                            <%=component.getDescription()%>
+                                        </td>
+                                    </tr>
+                                </table>
+                            <hr>
+                            <%}%>
                         </div>
                     </div>
                 </div>
