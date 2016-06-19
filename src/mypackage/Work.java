@@ -1,5 +1,7 @@
 package mypackage;
 
+import java.util.LinkedList;
+
 public class Work {
     public int getId() {
         return id;
@@ -55,6 +57,12 @@ public class Work {
     public void setCount_lists(String count_lists) {
         this.count_lists = count_lists;
     }
+    public LinkedList<Component> getComponents() {
+        return components;
+    }
+    public void setComponents(LinkedList<Component> components) {
+        this.components = components;
+    }
     private int id;
     private String article;
     private String description;
@@ -64,4 +72,5 @@ public class Work {
     private float size_y;
     private String own_photo;
     private String count_lists;
+    private LinkedList<Component> components;
 }

@@ -118,6 +118,7 @@ class Connector {
                 else
                     work.setOwn_photo(getTypePhoto(work.getType_work_id()));
                 work.setCount_lists(rs.getString(9));
+                work.setComponents(getComponentsToWork(work.getId()));
                 result.add(work);
             }
         } catch (Exception ex) {} finally {

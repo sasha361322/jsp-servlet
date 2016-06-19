@@ -1,6 +1,7 @@
 <%@ page import="mypackage.Work" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.LinkedList" %><%--
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="mypackage.Component" %><%--
   Created by IntelliJ IDEA.
   User: sasha
   Date: 17.06.2016
@@ -80,7 +81,38 @@
                     </td>
                 </tr>
                 <tr>
+                    <td colspan="3">
+                        <table>
+                            <tr>
+                                <th colspan="3">С этим так же покупают</th>
+                            </tr>
+                            <tr>
+                            <%LinkedList<Component>components=work.getComponents();
+                            Iterator i;
+                            Component component;
+                            for(i=components.iterator();i.hasNext();){
+                                component=(Component)i.next();%>
+                                <td width="33%">
+                            <table>
+                                <tr>
+                                    <td><%=component.getName_ru()%></td>
+                                    <td>Цена: <%=component.getPrice()%></td>
+                                </tr>
+                                <tr>
+                                    <td width="50%">
+                                        <img src="/img/components/<%=component.getPhoto()%>" width="100%"">
+                                    </td>
+                                    <td>
+                                        <%=component.getDescription()%>
+                                    </td>
+                                </tr>
 
+                            </table>
+                                </td>
+                            <%}%>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
             <hr>
