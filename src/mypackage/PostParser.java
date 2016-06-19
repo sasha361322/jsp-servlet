@@ -4,8 +4,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import java.io.IOException;
 import java.util.LinkedList;
+
 public class PostParser {
     PostParser(String url){
         Document doc;
@@ -14,7 +14,7 @@ public class PostParser {
         postText="";
         postPhotos = new LinkedList<String >();
         try {
-            doc = Jsoup.connect(url).get();
+            doc = Jsoup.connect(url).timeout(100*1000).get();
             Elements text = doc.select("div.pi_text");
             for (Node child:text.get(0).childNodes()){
                 postText+=child;
@@ -26,7 +26,7 @@ public class PostParser {
                     String almostPhoto = ref.attr("href");
                     String temp[] = almostPhoto.split("[&]+");
                     String temp_url = "https://new.vk.com"+temp[temp.length-2];
-                    Document docPhoto = Jsoup.connect(temp_url).get();
+                    Document docPhoto = Jsoup.connect(temp_url).timeout(100*1000).get();
                     Elements els = docPhoto.select("div.mv_description");
                     for (Element el:els){
                         Elements elemetns_with_ref = el.getElementsByAttribute("href");
@@ -36,8 +36,8 @@ public class PostParser {
                     }
                 }
             }
-        } catch (IOException e) {
-//            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
         }
     }
     public String getPostText() {
