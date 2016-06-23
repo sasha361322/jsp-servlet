@@ -13,6 +13,9 @@ import java.util.LinkedList;
 public class WorksServlet extends HttpServlet {
     String page = "works.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connector cn = new Connector();
         boolean is_finished = Boolean.parseBoolean(request.getParameter("is_finished"));
         int type_work_id = Integer.parseInt(request.getParameter("type_work_id"));
@@ -27,9 +30,6 @@ public class WorksServlet extends HttpServlet {
         if (dispatcher != null) {
             dispatcher.forward(request, response);
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

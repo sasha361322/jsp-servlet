@@ -9,7 +9,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<% String seria_name =(String) request.getAttribute("seria_name");%>
+<% String seria_name =(String) request.getAttribute("seria_name");
+//    response.sendRedirect("/sdasd");
+//    String site = new String(seria_name);
+//    response.setStatus(response.SC_MOVED_TEMPORARILY);
+//    response.setHeader("Location", site);
+//    response.setHeader("Connection", "close");
+//    response.sendRedirect(site);
+//    response.encodeURL (site);
+%>
+
 <head>
     <title><%=seria_name%></title>
     <style>
@@ -64,7 +73,7 @@
                             <img src="/img/<%=seria_name%>/<%=type_works.getPhoto()%>" width="60%" alt="cars" hspace="20%">
                         </td>
                         <td width="25%">
-                            <form action="/works" method="post">
+                            <form action="works" method="get">
                                 <input type="submit" class="button head_button" value="Готовые папертоли">
                                 <input type="hidden" name="is_finished" value="true">
                                 <input type="hidden" name="name" value="<%=type_works.getName()%>">
@@ -72,7 +81,7 @@
                             </form>
                         </td>
                         <td width="25%">
-                            <form action="/works" method="post">
+                            <form action="works" method="get">
                                 <input type="submit" class="button head_button" value="Папертольные карты">
                                 <input type="hidden" name="is_finished" value="false">
                                 <input type="hidden" name="name" value="<%=type_works.getName()%>">

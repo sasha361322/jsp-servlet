@@ -137,8 +137,7 @@
                                 for (itr=data.iterator(); itr.hasNext(); ) {
                                     seria = (Seria) itr.next();
                                 %>
-                                <form id="<%=seria.getId()%>" action="/seria" method="post">
-                                    <input type="hidden" name="seria_id" value=<%=seria.getId()%>>
+                                <form id="<%=seria.getId()%>" action="seria" method="get" name="<%=seria.getName()%>">
                                     <input type="hidden" name="name" value=<%=seria.getName()%>>
                                     <table>
                                         <tr>

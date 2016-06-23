@@ -84,7 +84,7 @@
                     <td colspan="3">
                         <table>
                             <tr>
-                                <th colspan="3">С этим так же покупают</th>
+                                <th  colspan="3">С этим так же покупают</th>
                             </tr>
                             <tr>
                             <%LinkedList<Component>components=work.getComponents();
@@ -100,7 +100,7 @@
                                 </tr>
                                 <tr>
                                     <td width="50%">
-                                        <img src="/img/components/<%=component.getPhoto()%>" width="100%"">
+                                        <img src="/img/components/<%=component.getPhoto()%>" width="100%"/>
                                     </td>
                                     <td>
                                         <%=component.getDescription()%>

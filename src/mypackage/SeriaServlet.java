@@ -13,11 +13,13 @@ import java.util.LinkedList;
 public class SeriaServlet extends HttpServlet {
     String page = "seria.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int seria_id = Integer.parseInt(request.getParameter("seria_id"));
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         Connector cn = new Connector();
         LinkedList<Type_work> type_works = new LinkedList<Type_work>();
         if(cn.Done()){
+            int seria_id = cn.execute("select id from series where name = \""+name+"\"");
             type_works = cn.getTypesOfWork(seria_id);
         }
         request.setAttribute("type_works", type_works);
@@ -26,9 +28,6 @@ public class SeriaServlet extends HttpServlet {
         if (dispatcher != null) {
             dispatcher.forward(request, response);
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

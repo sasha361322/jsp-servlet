@@ -226,6 +226,29 @@ class Connector {
         }
         return result;
     }
+    Integer execute(String sql){
+        int result=0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {}
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            Statement statement = cn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while(rs.next()){
+                result = rs.getInt(1);
+            }
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return result;
+                }
+            } catch (SQLException ex) {}
+        }
+        return result;
+    }
     private final String DB_URL = "jdbc:mysql://localhost:3306/paperoll";
     private final String DB_USER = "root";
     private final String DB_PASS = "";
