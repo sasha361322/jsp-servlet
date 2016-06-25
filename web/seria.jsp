@@ -73,7 +73,7 @@
                             <img src="/img/<%=seria_name%>/<%=type_works.getPhoto()%>" width="60%" alt="cars" hspace="20%">
                         </td>
                         <td width="25%">
-                            <form action="works" method="get">
+                            <form action="works" method="get" id="<%=type_works.getId()%>" name=""<%=type_works.getName()%>>
                                 <input type="submit" class="button head_button" value="Готовые папертоли">
                                 <input type="hidden" name="is_finished" value="true">
                                 <input type="hidden" name="name" value="<%=type_works.getName()%>">

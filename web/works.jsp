@@ -12,7 +12,7 @@
 <html>
 <head>
     <% String name =(String) request.getAttribute("name");%>
-    <title>name</title>
+    <title><%=name%></title>
     <style>
         <%@include file='css/style.css' %>
     </style>
