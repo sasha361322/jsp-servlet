@@ -17,23 +17,25 @@ public class LoginServlet extends HttpServlet {
             if (connector.execute("select count(*) from admin where name=\""+name+"\" and password=\""+password+"\"")==1){
                 //правильные данные при входе
                 System.out.println("correct");
-                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                request.setAttribute("login", "y");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("mypackage/AdminServlet.java");
                 if (dispatcher != null) {
                     dispatcher.forward(request, response);
                 }
             }
             else{//если логин-пароль неправильные
-                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(returnPage);
                 dispatcher.forward(request, response);
             }
         }
         else{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(returnPage);
             dispatcher.forward(request, response);
         }
     }
-    String page="admin.jsp";
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
+    String page="admin.jsp";
+    String returnPage="login.jsp";
 }
