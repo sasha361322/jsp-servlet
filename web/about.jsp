@@ -1,4 +1,4 @@
-<%--
+<%@ page import="mypackage.PostParser" %><%--
   Created by IntelliJ IDEA.
   User: sasha
   Date: 06.06.2016
@@ -22,7 +22,7 @@
 >
     <tr>
         <th>
-            <form action="main.jsp" method="post">
+            <form action="news" method="post">
                 <input class = "button head_button" type="submit" value="Главная"/>
             </form>
         </th>

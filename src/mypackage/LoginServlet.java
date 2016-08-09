@@ -16,12 +16,9 @@ public class LoginServlet extends HttpServlet {
             Connector connector = new Connector();
             if (connector.execute("select count(*) from admin where name=\""+name+"\" and password=\""+password+"\"")==1){
                 //правильные данные при входе
-                System.out.println("correct");
+                RequestDispatcher rs = request.getRequestDispatcher("autorisation");
                 request.setAttribute("login", "y");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("mypackage/AdminServlet.java");
-                if (dispatcher != null) {
-                    dispatcher.forward(request, response);
-                }
+                rs.forward(request, response);
             }
             else{//если логин-пароль неправильные
                 RequestDispatcher dispatcher = request.getRequestDispatcher(returnPage);
@@ -36,6 +33,5 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-    String page="admin.jsp";
-    String returnPage="login.jsp";
+    private String returnPage="login.jsp";
 }

@@ -23,7 +23,7 @@
 >
     <tr>
         <th>
-            <form action="main.jsp" method="post">
+            <form action="news" method="post">
                 <input class = "button head_button" type="submit" value="Главная"/>
             </form>
         </th>

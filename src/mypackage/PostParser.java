@@ -6,10 +6,11 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import java.util.LinkedList;
 
-public class PostParser {
-    PostParser(String url){
+public class PostParser implements Runnable{
+    @Override
+    public void run() {
         Document doc;
-        //"https://new.vk.com/paperar?w=wall-119698233_16" to "https://new.vk.com/wall-119698233_16"
+        //"https://new.vk.com/paperar?w=wall-119698233_16" to "https://new.vk.com/wall-119698233_16" PhantomJS
         url = "https://new.vk.com/" + url.substring(url.indexOf("wall-"));
         postText="";
         postPhotos = new LinkedList<String >();
@@ -40,6 +41,9 @@ public class PostParser {
             //e.printStackTrace();
         }
     }
+    PostParser(String s)  {
+        url = s;
+    }
     public String getPostText() {
         return postText;
     }
@@ -48,4 +52,5 @@ public class PostParser {
     }
     private String postText;
     private LinkedList<String> postPhotos;
+    private String url;
 }

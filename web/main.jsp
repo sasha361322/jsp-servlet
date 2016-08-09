@@ -1,5 +1,5 @@
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="mypackage.News" %><%--
   Created by IntelliJ IDEA.
   User: sasha
   Date: 04.06.2016
@@ -45,6 +45,21 @@
                   <input class = "button head_button" type="submit" value="Контактные данные"/>
               </form>
           </th>
+      </tr>
+      <tr>
+          <td colspan="4">
+              <h2 align="center">Новости</h2>
+            <%
+                LinkedList<News>newses = (LinkedList<News>) request.getAttribute("news");
+                for(News news:newses){%>
+                    <p><%=news.getText()%></p><br><br>
+                    <%
+                    for (String photo:news.getPhotoes()){%>
+                    <img src="<%=photo%>"><br><br><br>
+                    <%}
+                    %><hr><%
+                }%>
+          </td>
       </tr>
   </table>
   </body>

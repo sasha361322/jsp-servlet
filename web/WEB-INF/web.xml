@@ -36,6 +36,22 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>AutorisationServlet</servlet-name>
+        <servlet-class>mypackage.AutorisationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutorisationServlet</servlet-name>
+        <url-pattern>/autorisation</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>NewsServlet</servlet-name>
+        <servlet-class>mypackage.NewsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewsServlet</servlet-name>
+        <url-pattern>/news</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>mypackage.AdminServlet</servlet-class>
     </servlet>
@@ -48,6 +64,6 @@
         <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>main.jsp</welcome-file>
+        <welcome-file>mypackage.NewsServlet</welcome-file>
     </welcome-file-list>
 </web-app>

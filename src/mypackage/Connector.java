@@ -131,6 +131,42 @@ class Connector {
         }
         return result;
     }
+    Work getWork(int id){
+        Work work = null;
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            String SQLRequest = "Select * FROM work WHERE id=?";
+            PreparedStatement pst = cn.prepareStatement(SQLRequest);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            work = new Work();
+            while(rs.next()){
+                work.setId(rs.getInt(1));
+                work.setArticle(rs.getString(2));
+                work.setDescription(rs.getString(3));
+                work.setType_work_id(rs.getInt(4));
+                work.setPrice(rs.getInt(5));
+                work.setSize_x(rs.getInt(6));
+                work.setSize_y(rs.getInt(7));
+                String photo = rs.getString(8);
+                if (photo!=null)
+                    work.setOwn_photo(photo);
+                else
+                    work.setOwn_photo(getTypePhoto(work.getType_work_id()));
+                work.setCount_lists(rs.getString(9));
+                work.setComponents(getComponentsToWork(work.getId()));
+            }
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return work;
+                }
+            } catch (SQLException ex) {}
+        }
+        return work;
+    }
     String getTypePhoto(int id){
         String result = null;
         try {
@@ -238,6 +274,66 @@ class Connector {
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
                 result = rs.getInt(1);
+            }
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return result;
+                }
+            } catch (SQLException ex) {}
+        }
+        return result;
+    }
+    LinkedList<News> getNews(){
+        LinkedList<News> result = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {}
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            Statement statement = cn.createStatement();
+            String SQLRequest = "Select * FROM news";
+            ResultSet rs = statement.executeQuery(SQLRequest);
+            result = new LinkedList<News>();
+            while(rs.next()){
+                News news = new News();
+                news.setId(rs.getInt(1));
+                news.setPhotoes(getPhotoes(rs.getInt(2)));
+                news.setText(rs.getString(3));
+                news.setWork(getWork(rs.getInt(4)));
+                news.setDate(rs.getDate(5));
+                result.add(news);
+            }
+        } catch (Exception ex) {} finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    return result;
+                }
+            } catch (SQLException ex) {}
+        }
+        return result;
+    }
+    LinkedList<String> getPhotoes(int id){
+        LinkedList<String> result = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {}
+        Connection cn = null;
+        try {
+            cn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            Statement statement = cn.createStatement();
+            String SQLRequest = "Select * FROM news where id="+id;
+            ResultSet rs = statement.executeQuery(SQLRequest);
+            while(rs.next()){
+                result = new LinkedList<String>();
+                for (int i = 1; i < 10; i++){
+                    String photo = rs.getString(i+1);
+                    if (photo!=null)
+                        result.add(photo);
+                }
             }
         } catch (Exception ex) {} finally {
             try {
