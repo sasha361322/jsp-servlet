@@ -11,12 +11,18 @@ import java.io.IOException;
 @WebServlet(name = "AdminServlet")
 public class AdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("AdminServlet");
         String login  = request.getAttribute("login").toString();
         if ((login!=null)||(login=="y")){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
-        }else{
+            System.out.println("AdminServlet y");
+            request.setAttribute("admin", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }
+        }else{
+            System.out.println("AdminServlet n");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
         }
     }

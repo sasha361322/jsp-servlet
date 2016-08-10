@@ -13,11 +13,13 @@ public class AutorisationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login  = request.getAttribute("login").toString();
         if ((login!=null)&&(login=="y")){
+            System.out.println("AutorisationServlet y");
             RequestDispatcher rs = request.getRequestDispatcher("admin");
             request.setAttribute("login", "y");
             rs.forward(request, response);
         }
         else{
+            System.out.println("AutorisationServlet n");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
         }
